@@ -1,0 +1,16 @@
+
+test-output/testng-results.xml
+test-output/testng-failed.xml
+test-output/old/Exceptions Tests Suite/toc.html
+test-output/old/Exceptions Tests Suite/testng.xml.html
+test-output/old/Exceptions Tests Suite/methods.html
+test-output/old/Exceptions Tests Suite/methods-not-run.html
+test-output/old/Exceptions Tests Suite/methods-alphabetical.html
+test-output/old/Exceptions Tests Suite/classes.html
+test-output/junitreports/TEST-com.herokuapp.theinternet.ExceptionsTests.xml
+test-output/index.html
+test-output/Exceptions Tests Suite/testng-failed.xml
+test-output/Exceptions Tests Suite/Exceptions Test.xml
+test-output/Exceptions Tests Suite/Exceptions Test.html
+test-output/emailable-report.html
+test-output/emailable-report.html

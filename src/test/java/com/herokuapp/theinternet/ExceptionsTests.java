@@ -152,6 +152,55 @@ public class ExceptionsTests {
 
 	}
 
+	@Test
+	public void staleElementTest() {
+
+		driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+
+		WebElement checkbox = driver.findElement(By.id("checkbox"));
+		WebElement removeButton = driver.findElement(By.xpath("//button[contains(text(),'Remove')]"));
+
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+
+		removeButton.click();
+
+//		wait.until(ExpectedConditions.invisibilityOf(checkbox));
+//		
+//		Assert.assertFalse(checkbox.isDisplayed());
+
+//		Assert.assertTrue(wait.until(ExpectedConditions.invisibilityOf(checkbox)),
+//				"Checkbox is still visible, but shouldn´t be");
+
+		Assert.assertTrue(wait.until(ExpectedConditions.stalenessOf(checkbox)),
+				"Checkbox is still visible, but shouldn´t be");
+		
+		WebElement addButton = driver.findElement(By.xpath("//button[contains(text(),'Add')]"));
+		addButton.click();
+		
+		checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkbox")));
+		Assert.assertTrue(checkbox.isDisplayed(), "Checkbox is still visible, but should be");
+		
+	}
+	
+	@Test
+	public void disableElementTest() {
+		
+		//navigate to page
+		driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+		
+		//create two WebElements: button enable and textField
+		WebElement enableButton = driver.findElement(By.xpath("//button[contains(text(),'Enable')]"));
+		WebElement textField = driver.findElement(By.xpath("(//input)[2]"));
+		
+		enableButton.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(textField));
+
+		textField.sendKeys("Text Field Test");
+		Assert.assertEquals(textField.getAttribute("value"), "Text Field Test");
+	}
+
 	private void sleep(long m) {
 		try {
 			Thread.sleep(m);

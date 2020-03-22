@@ -7,7 +7,7 @@
 		<classes>
 			<class name="com.herokuapp.theinternet.ExceptionsTests">
 				<methods>
-					<include name="noSuchElementTest"></include>
+					<include name="disableElementTest"></include>
 				</methods>
 			</class>
 		</classes>

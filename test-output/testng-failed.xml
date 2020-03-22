@@ -6,7 +6,7 @@
     <classes>
       <class name="com.herokuapp.theinternet.ExceptionsTests">
         <methods>
-          <include name="noSuchElementTest"/>
+          <include name="disableElementTest"/>
           <include name="setUp"/>
           <include name="tearDown"/>
         </methods>
