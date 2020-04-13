@@ -14,3 +14,7 @@ test-output/Exceptions Tests Suite/Exceptions Test.xml
 test-output/Exceptions Tests Suite/Exceptions Test.html
 test-output/emailable-report.html
 test-output/emailable-report.html
+*.html
+*.html
+*.html
+*.html
