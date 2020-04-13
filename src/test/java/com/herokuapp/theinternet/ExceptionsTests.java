@@ -2,53 +2,14 @@ package com.herokuapp.theinternet;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import com.herokuapp.theinternet.base.TestUtilities;
 
-public class ExceptionsTests {
-
-	private WebDriver driver;
-
-	@Parameters({ "browser" })
-	@BeforeTest(alwaysRun = true)
-	private void setUp(@Optional("chrome") String browser) {
-		// create driver
-
-		switch (browser) {
-		case "chrome":
-			System.setProperty("webDriver.chrome.driver", "src/main/resources/chromedriver");
-			driver = new ChromeDriver();
-			break;
-		case "firefox":
-			System.setProperty("webDriver.gecko.driver", "src/main/resources/geckodriver");
-			driver = new FirefoxDriver();
-		default:
-			System.out.println("Do not know to start " + browser + ", starting chrome instead");
-			System.setProperty("webDriver.chrome.driver", "src/main/resources/chromedriver");
-			driver = new ChromeDriver();
-			break;
-		}
-
-		// sleep 3 seconds just to see the steps on test run session.
-		sleep(3000);
-
-		// maximize browser window
-		driver.manage().window().maximize();
-
-		// implicit wait
-		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-	}
+public class ExceptionsTests extends TestUtilities {
 
 	@Test(priority = 1)
 	public void notVisibleTest() {
@@ -56,7 +17,7 @@ public class ExceptionsTests {
 
 		// String url = "http://the-internet.herokuapp.com/dynamic_loading/1";
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/1");
-		System.out.println("Page" + "http://the-internet.herokuapp.com/dynamic_loading/1" + "is open");
+		log.info("Page" + "http://the-internet.herokuapp.com/dynamic_loading/1" + "is open");
 
 		// find locator for startButton and click on it
 
@@ -89,7 +50,7 @@ public class ExceptionsTests {
 
 		// String url = "http://the-internet.herokuapp.com/dynamic_loading/1";
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/1");
-		System.out.println("Page" + "http://the-internet.herokuapp.com/dynamic_loading/1" + "is open");
+		log.info("Page" + "http://the-internet.herokuapp.com/dynamic_loading/1" + "is open");
 
 		// find locator for startButton and click on it
 
@@ -126,7 +87,7 @@ public class ExceptionsTests {
 
 		// String url = "http://the-internet.herokuapp.com/dynamic_loading/2";
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
-		System.out.println("Page " + "http://the-internet.herokuapp.com/dynamic_loading/1" + " is open");
+		log.info("Page " + "http://the-internet.herokuapp.com/dynamic_loading/1" + " is open");
 
 		// find locator for startButton and click on it
 
@@ -173,27 +134,27 @@ public class ExceptionsTests {
 
 		Assert.assertTrue(wait.until(ExpectedConditions.stalenessOf(checkbox)),
 				"Checkbox is still visible, but shouldn´t be");
-		
+
 		WebElement addButton = driver.findElement(By.xpath("//button[contains(text(),'Add')]"));
 		addButton.click();
-		
+
 		checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkbox")));
 		Assert.assertTrue(checkbox.isDisplayed(), "Checkbox is still visible, but should be");
-		
+
 	}
-	
+
 	@Test
 	public void disableElementTest() {
-		
-		//navigate to page
+
+		// navigate to page
 		driver.get("http://the-internet.herokuapp.com/dynamic_controls");
-		
-		//create two WebElements: button enable and textField
+
+		// create two WebElements: button enable and textField
 		WebElement enableButton = driver.findElement(By.xpath("//button[contains(text(),'Enable')]"));
 		WebElement textField = driver.findElement(By.xpath("(//input)[2]"));
-		
+
 		enableButton.click();
-		
+
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(textField));
 
@@ -201,17 +162,4 @@ public class ExceptionsTests {
 		Assert.assertEquals(textField.getAttribute("value"), "Text Field Test");
 	}
 
-	private void sleep(long m) {
-		try {
-			Thread.sleep(m);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@AfterMethod(alwaysRun = true)
-	private void tearDown() {
-		// close browser
-		driver.quit();
-	}
 }
