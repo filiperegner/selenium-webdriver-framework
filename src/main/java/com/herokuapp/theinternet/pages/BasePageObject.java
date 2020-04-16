@@ -1,6 +1,11 @@
 package com.herokuapp.theinternet.pages;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +35,11 @@ public class BasePageObject {
 		return driver.findElement(locator);
 	}
 
+	/** Find all elements using given locator */
+	protected List<WebElement> findAll(By locator) {
+		return driver.findElements(locator);
+	}
+
 	/** Click on element with given locator when its visible */
 	protected void click(By locator) {
 		waitForVisibilityOf(locator, 5);
@@ -45,6 +55,16 @@ public class BasePageObject {
 	/** get URL of current page from browser */
 	public String getCurrentUrl() {
 		return driver.getCurrentUrl();
+	}
+
+	/** Get title of current page */
+	public String getCurrentPageTitle() {
+		return driver.getTitle();
+	}
+
+	/** Get source of current page */
+	public String getCurrentPageSource() {
+		return driver.getPageSource();
 	}
 
 	/**
@@ -71,5 +91,35 @@ public class BasePageObject {
 			}
 			attempts++;
 		}
+	}
+
+	/** Wait for alert present and then switch to it */
+	protected Alert switchToAlert() {
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.alertIsPresent());
+		return driver.switchTo().alert();
+	}
+
+	public void switchToWindowWithTitle(String expectedTitle) {
+		// Switching to new window
+		String firstWindow = driver.getWindowHandle();
+
+		Set<String> allWindows = driver.getWindowHandles();
+		Iterator<String> windowsIterator = allWindows.iterator();
+
+		while (windowsIterator.hasNext()) {
+			String windowHandle = windowsIterator.next().toString();
+			if (!windowHandle.equals(firstWindow)) {
+				driver.switchTo().window(windowHandle);
+				if (getCurrentPageTitle().equals(expectedTitle)) {
+					break;
+				}
+			}
+		}
+	}
+
+	/** Switch to iFrame using it's locator */
+	protected void switchToFrame(By frameLocator) {
+		driver.switchTo().frame(find(frameLocator));
 	}
 }
