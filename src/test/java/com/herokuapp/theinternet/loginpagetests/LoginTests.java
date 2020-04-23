@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import com.herokuapp.theinternet.base.TestUtilities;
 import com.herokuapp.theinternet.pages.LoginPage;
 import com.herokuapp.theinternet.pages.SecureAreaPage;
-import com.herokuapp.theinternet.pages.WelcomePageObject;
+import com.herokuapp.theinternet.pages.WelcomePage;
 
 public class LoginTests extends TestUtilities {
 
@@ -18,7 +18,7 @@ public class LoginTests extends TestUtilities {
 		log.info("Starting logIn test");
 
 		// open main page
-		WelcomePageObject welcomePage = new WelcomePageObject(driver, log);
+		WelcomePage welcomePage = new WelcomePage(driver, log);
 		welcomePage.openPage();
 
 		// Click on Form Authentication link
@@ -48,7 +48,7 @@ public class LoginTests extends TestUtilities {
 		log.info("Starting negativeTest");
 
 		// open main page
-		WelcomePageObject welcomePage = new WelcomePageObject(driver, log);
+		WelcomePage welcomePage = new WelcomePage(driver, log);
 		welcomePage.openPage();
 
 		// Click on Form Authentication link

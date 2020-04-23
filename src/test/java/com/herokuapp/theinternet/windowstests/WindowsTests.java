@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import com.herokuapp.theinternet.base.TestUtilities;
 import com.herokuapp.theinternet.pages.NewWindowPage;
-import com.herokuapp.theinternet.pages.WelcomePageObject;
+import com.herokuapp.theinternet.pages.WelcomePage;
 import com.herokuapp.theinternet.pages.WindowsPage;
 
 public class WindowsTests extends TestUtilities {
@@ -15,7 +15,7 @@ public class WindowsTests extends TestUtilities {
 		log.info("Starting newWindowTest");
 
 		// open main page
-		WelcomePageObject welcomePage = new WelcomePageObject(driver, log);
+		WelcomePage welcomePage = new WelcomePage(driver, log);
 		welcomePage.openPage();
 
 		// Click on MultipleWindows link
