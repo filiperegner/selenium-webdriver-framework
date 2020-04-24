@@ -15,6 +15,15 @@
 				name="com.herokuapp.theinternet.loginpagetests.LoginTests" />
 		</classes>
 	</test>
+	<test name="NegativeLoginTest-CH">		
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class
+				name="com.herokuapp.theinternet.loginpagetests.LoginTests">
+			</class>
+		</classes>
+	</test>
+	<!--  
 	<test name="NegativeUsernameTest-CH">
 		<parameter name="username" value="incorrectUsername"></parameter>
 		<parameter name="password" value="SuperSecretPassword!"></parameter>
@@ -39,4 +48,5 @@
 			</class>
 		</classes>
 	</test>
+	-->
 </suite>
