@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite thread-count="3" parallel="tests" name="Failed suite [LoginTests]" guice-stage="DEVELOPMENT">
-  <test thread-count="3" parallel="tests" name="NegativePasswordTests(failed)">
-    <parameter name="password" value="incorrect"/>
+  <test thread-count="3" parallel="tests" name="NegativeLoginTest-CH(failed)">
     <parameter name="browser" value="chrome"/>
-    <parameter name="expectedMessage" value="Your password is invalid!"/>
-    <parameter name="username" value="tomsmith"/>
     <classes>
       <class name="com.herokuapp.theinternet.loginpagetests.LoginTests">
         <methods>
@@ -15,20 +12,5 @@
         </methods>
       </class> <!-- com.herokuapp.theinternet.loginpagetests.LoginTests -->
     </classes>
-  </test> <!-- NegativePasswordTests(failed) -->
-  <test thread-count="3" parallel="tests" name="NegativeUsernameTests(failed)">
-    <parameter name="password" value="SupersecretPassword!"/>
-    <parameter name="browser" value="chrome"/>
-    <parameter name="expectedMessage" value="Your username is invalid!"/>
-    <parameter name="username" value="incorrect"/>
-    <classes>
-      <class name="com.herokuapp.theinternet.loginpagetests.LoginTests">
-        <methods>
-          <include name="setUp"/>
-          <include name="tearDown"/>
-          <include name="negativeLoginTest" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- com.herokuapp.theinternet.loginpagetests.LoginTests -->
-    </classes>
-  </test> <!-- NegativeUsernameTests(failed) -->
+  </test> <!-- NegativeLoginTest-CH(failed) -->
 </suite> <!-- Failed suite [LoginTests] -->

@@ -2,7 +2,20 @@
 
 <suite name="LoginTests" verbose="1" parallel="tests"
 	thread-count="3">
-	<test name="PositiveTests">
+	<!-- <test name="PositiveTests-WPr">
+		<parameter name="chromeProfile" value="ChromeProfile">
+		</parameter>
+		<groups>
+			<run>
+				<include name="positiveTests" />
+			</run>
+		</groups>
+		<classes>
+			<class
+				name="com.herokuapp.theinternet.loginpagetests.LoginTests" />
+		</classes>
+	</test> -->
+	<test name="PositiveTests-WoPr">
 		<parameter name="browser" value="chrome">
 		</parameter>
 		<groups>
