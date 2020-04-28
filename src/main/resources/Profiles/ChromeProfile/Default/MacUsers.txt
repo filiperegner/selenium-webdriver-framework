@@ -1,0 +1,1 @@
+For Mac users to find Chrome profile path just type "chrome://version/" in chrome address bar, then you will see the "Profile Path"
